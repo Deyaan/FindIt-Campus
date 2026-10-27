@@ -81,29 +81,29 @@ export default function Register() {
 
   return (
     <div className="min-h-[calc(100vh-10rem)] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-sm">
+      <div className="max-w-md w-full space-y-8 bg-white dark:bg-[#151724] p-8 sm:p-10 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl transition-colors">
         {/* Header */}
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center mx-auto shadow-sm">
+          <div className="w-12 h-12 bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 border border-purple-100 dark:border-purple-800/40 rounded-xl flex items-center justify-center mx-auto shadow-sm">
             <UserPlus className="w-6 h-6 stroke-[2.2]" />
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Create an Account
           </h1>
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-500 dark:text-slate-400">
             Join FindIt to report lost property and submit ownership claims.
           </p>
         </div>
 
         {/* Configuration Warning */}
         {!isConfigured && (
-          <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-sm flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+          <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/50 text-amber-800 dark:text-amber-300 text-sm flex items-start gap-3">
+            <AlertCircle className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
             <div>
               <p className="font-semibold">Supabase Configuration Required</p>
-              <p className="text-xs mt-0.5 text-amber-700">
-                Please configure <code className="bg-amber-100 px-1 py-0.5 rounded">VITE_SUPABASE_URL</code> and{' '}
-                <code className="bg-amber-100 px-1 py-0.5 rounded">VITE_SUPABASE_ANON_KEY</code> in your <code className="bg-amber-100 px-1 py-0.5 rounded">.env</code> file.
+              <p className="text-xs mt-0.5 text-amber-700 dark:text-amber-400">
+                Please configure <code className="bg-amber-100 dark:bg-amber-900/50 px-1 py-0.5 rounded">VITE_SUPABASE_URL</code> and{' '}
+                <code className="bg-amber-100 dark:bg-amber-900/50 px-1 py-0.5 rounded">VITE_SUPABASE_ANON_KEY</code> in your <code className="bg-amber-100 dark:bg-amber-900/50 px-1 py-0.5 rounded">.env</code> file.
               </p>
             </div>
           </div>
@@ -112,22 +112,22 @@ export default function Register() {
         {/* Success Confirmation State */}
         {successInfo ? (
           <div className="space-y-6">
-            <div className="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 space-y-3">
+            <div className="p-5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/50 text-emerald-900 dark:text-emerald-300 space-y-3">
               <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-6 h-6 text-emerald-600 shrink-0" />
-                <h3 className="font-bold text-base">Account Created Successfully</h3>
+                <CheckCircle2 className="w-6 h-6 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                <h3 className="font-bold text-base text-emerald-950 dark:text-emerald-200">Account Created Successfully</h3>
               </div>
-              <p className="text-sm text-emerald-800 leading-relaxed">
+              <p className="text-sm text-emerald-800 dark:text-emerald-300 leading-relaxed">
                 {successInfo.message}
               </p>
-              <p className="text-xs font-mono bg-white/60 p-2 rounded border border-emerald-300/50">
+              <p className="text-xs font-mono bg-white/60 dark:bg-[#11121d] p-2 rounded border border-emerald-300/50 dark:border-emerald-800/50 text-slate-800 dark:text-slate-200">
                 Registered Email: {successInfo.email}
               </p>
             </div>
 
             <Link
               to="/login"
-              className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition-all"
+              className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-md shadow-purple-500/20 transition-all"
             >
               Proceed to Sign In
               <ArrowRight className="w-4 h-4" />
@@ -137,8 +137,8 @@ export default function Register() {
           <>
             {/* Error Alert */}
             {errorMsg && (
-              <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-sm flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
+              <div className="p-4 rounded-xl bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-800/50 text-rose-800 dark:text-rose-300 text-sm flex items-start gap-3">
+                <AlertCircle className="w-5 h-5 text-rose-600 dark:text-rose-400 shrink-0 mt-0.5" />
                 <div className="text-xs sm:text-sm font-medium leading-relaxed">{errorMsg}</div>
               </div>
             )}
@@ -146,11 +146,11 @@ export default function Register() {
             {/* Registration Form */}
             <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                   Full Name
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 dark:text-slate-500">
                     <User className="w-4 h-4" />
                   </div>
                   <input
@@ -159,17 +159,17 @@ export default function Register() {
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="Alex Morgan"
-                    className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 focus:bg-white transition-all"
+                    className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 dark:bg-[#11121d] border border-slate-200 dark:border-slate-800 rounded-xl text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 focus:bg-white dark:focus:bg-[#151724] transition-all"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                   Campus Email Address
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 dark:text-slate-500">
                     <Mail className="w-4 h-4" />
                   </div>
                   <input
@@ -178,17 +178,17 @@ export default function Register() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="student@campus.edu"
-                    className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 focus:bg-white transition-all"
+                    className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 dark:bg-[#11121d] border border-slate-200 dark:border-slate-800 rounded-xl text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 focus:bg-white dark:focus:bg-[#151724] transition-all"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                   Password
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 dark:text-slate-500">
                     <Lock className="w-4 h-4" />
                   </div>
                   <input
@@ -197,17 +197,17 @@ export default function Register() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="At least 6 characters"
-                    className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 focus:bg-white transition-all"
+                    className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 dark:bg-[#11121d] border border-slate-200 dark:border-slate-800 rounded-xl text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 focus:bg-white dark:focus:bg-[#151724] transition-all"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                   Confirm Password
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 dark:text-slate-500">
                     <Lock className="w-4 h-4" />
                   </div>
                   <input
@@ -216,7 +216,7 @@ export default function Register() {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="Repeat your password"
-                    className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 focus:bg-white transition-all"
+                    className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 dark:bg-[#11121d] border border-slate-200 dark:border-slate-800 rounded-xl text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-600 focus:bg-white dark:focus:bg-[#151724] transition-all"
                   />
                 </div>
               </div>
@@ -225,7 +225,7 @@ export default function Register() {
                 <button
                   type="submit"
                   disabled={isSubmitting || !isConfigured}
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 border border-transparent rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-sm shadow-indigo-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 border border-transparent rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 shadow-md shadow-purple-500/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                 >
                   {isSubmitting ? (
                     <>
@@ -243,12 +243,12 @@ export default function Register() {
             </form>
 
             {/* Footer Link to Login */}
-            <div className="pt-4 border-t border-slate-100 text-center">
-              <p className="text-sm text-slate-600">
+            <div className="pt-4 border-t border-slate-100 dark:border-slate-800 text-center">
+              <p className="text-sm text-slate-600 dark:text-slate-400">
                 Already have an account?{' '}
                 <Link
                   to="/login"
-                  className="font-semibold text-indigo-600 hover:text-indigo-700 hover:underline transition-colors"
+                  className="font-semibold text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 hover:underline transition-colors"
                 >
                   Sign in here
                 </Link>

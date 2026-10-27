@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute, AdminRoute } from './components/common/RouteGuards';
 import Navbar from './components/common/Navbar';
@@ -15,11 +16,12 @@ import ItemDetail from './pages/ItemDetail';
 
 export default function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800">
-          <Navbar />
-          <main className="flex-1">
+    <ThemeProvider>
+      <AuthProvider>
+        <Router>
+          <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-[#0d0e15] text-slate-800 dark:text-slate-100 transition-colors duration-200 selection:bg-purple-600 selection:text-white">
+            <Navbar />
+            <main className="flex-1">
             <Routes>
               {/* Public Routes */}
               <Route path="/" element={<Home />} />
@@ -57,9 +59,10 @@ export default function App() {
               />
             </Routes>
           </main>
-          <Footer />
-        </div>
-      </Router>
-    </AuthProvider>
+            <Footer />
+          </div>
+        </Router>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }

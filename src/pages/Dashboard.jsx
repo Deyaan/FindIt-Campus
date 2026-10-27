@@ -23,13 +23,13 @@ import { useAuth } from '../context/AuthContext';
 
 function ItemStatusBadge({ status }) {
   const map = {
-    active:    'bg-emerald-100 text-emerald-800 border-emerald-200',
-    claimed:   'bg-amber-100 text-amber-800 border-amber-200',
-    returned:  'bg-blue-100 text-blue-800 border-blue-200',
-    moderated: 'bg-rose-100 text-rose-800 border-rose-200',
+    active:    'bg-emerald-100 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60',
+    claimed:   'bg-amber-100 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800/60',
+    returned:  'bg-blue-100 dark:bg-blue-950/40 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-800/60',
+    moderated: 'bg-rose-100 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 border-rose-200 dark:border-rose-900/50',
   };
   return (
-    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold border capitalize ${map[status] || 'bg-slate-100 text-slate-600 border-slate-200'}`}>
+    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold border capitalize ${map[status] || 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700'}`}>
       {status}
     </span>
   );
@@ -37,11 +37,11 @@ function ItemStatusBadge({ status }) {
 
 function ClaimStatusBadge({ status }) {
   const map = {
-    pending:  { cls: 'bg-amber-100 text-amber-800 border-amber-200',  icon: Clock },
-    approved: { cls: 'bg-emerald-100 text-emerald-800 border-emerald-200', icon: CheckCircle2 },
-    rejected: { cls: 'bg-rose-100 text-rose-800 border-rose-200',    icon: XCircle },
+    pending:  { cls: 'bg-amber-100 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800/60',  icon: Clock },
+    approved: { cls: 'bg-emerald-100 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60', icon: CheckCircle2 },
+    rejected: { cls: 'bg-rose-100 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 border-rose-200 dark:border-rose-900/50',    icon: XCircle },
   };
-  const cfg = map[status] || { cls: 'bg-slate-100 text-slate-600 border-slate-200', icon: AlertCircle };
+  const cfg = map[status] || { cls: 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700', icon: AlertCircle };
   const Icon = cfg.icon;
   return (
     <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold border capitalize ${cfg.cls}`}>
@@ -80,8 +80,8 @@ function MyReports({ userId }) {
 
   if (isLoading) {
     return (
-      <div className="py-12 flex items-center justify-center gap-3 text-slate-400">
-        <Loader2 className="w-5 h-5 animate-spin text-indigo-500" />
+      <div className="py-12 flex items-center justify-center gap-3 text-slate-400 dark:text-slate-500">
+        <Loader2 className="w-5 h-5 animate-spin text-purple-500" />
         <span className="text-sm">Loading your reports...</span>
       </div>
     );
@@ -89,7 +89,7 @@ function MyReports({ userId }) {
 
   if (error) {
     return (
-      <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-sm text-rose-800 flex items-center justify-between gap-3">
+      <div className="p-4 rounded-xl bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/50 text-sm text-rose-800 dark:text-rose-300 flex items-center justify-between gap-3">
         <span className="flex items-center gap-2"><AlertCircle className="w-4 h-4" />{error}</span>
         <button onClick={fetchReports} className="text-xs font-bold underline">Retry</button>
       </div>
@@ -98,14 +98,14 @@ function MyReports({ userId }) {
 
   if (reports.length === 0) {
     return (
-      <div className="py-10 text-center space-y-3 rounded-2xl bg-slate-50 border border-dashed border-slate-200">
-        <FileText className="w-8 h-8 text-slate-300 mx-auto" />
-        <p className="text-sm font-semibold text-slate-600">No reports yet</p>
-        <p className="text-xs text-slate-400">Reports you submit will appear here.</p>
+      <div className="py-10 text-center space-y-3 rounded-2xl bg-slate-50 dark:bg-[#11121d] border border-dashed border-slate-200 dark:border-slate-800">
+        <FileText className="w-8 h-8 text-slate-300 dark:text-slate-600 mx-auto" />
+        <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">No reports yet</p>
+        <p className="text-xs text-slate-400 dark:text-slate-500">Reports you submit will appear here.</p>
         <Link
           to="/report"
           id="btn-new-report-empty"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-sm transition-colors"
         >
           <Plus className="w-4 h-4" /> Submit a Report
         </Link>
@@ -119,23 +119,23 @@ function MyReports({ userId }) {
         <Link
           key={item.id}
           to={`/items/${item.id}`}
-          className="flex items-center justify-between gap-4 p-4 rounded-2xl border border-slate-200 hover:border-indigo-300 hover:shadow-sm bg-white transition-all group"
+          className="flex items-center justify-between gap-4 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-purple-300 dark:hover:border-purple-700/60 hover:shadow-sm bg-white dark:bg-[#181a28] transition-all group"
         >
           <div className="flex items-start gap-3 flex-1 min-w-0">
             <span
               className={`mt-0.5 shrink-0 inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
                 item.type === 'lost'
-                  ? 'bg-rose-100 text-rose-700'
-                  : 'bg-indigo-100 text-indigo-700'
+                  ? 'bg-rose-100 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300'
+                  : 'bg-purple-100 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300'
               }`}
             >
               {item.type}
             </span>
             <div className="min-w-0 space-y-1">
-              <p className="text-sm font-bold text-slate-900 truncate group-hover:text-indigo-600 transition-colors">
+              <p className="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                 {item.title}
               </p>
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-slate-500">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-slate-500 dark:text-slate-400">
                 <span className="flex items-center gap-1"><Tag className="w-3 h-3" />{item.category}</span>
                 <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{item.location}</span>
                 <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{item.date_incident}</span>
@@ -144,7 +144,7 @@ function MyReports({ userId }) {
           </div>
           <div className="flex items-center gap-3 shrink-0">
             <ItemStatusBadge status={item.status} />
-            <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-indigo-500 transition-colors" />
+            <ArrowRight className="w-4 h-4 text-slate-300 dark:text-slate-600 group-hover:text-purple-500 transition-colors" />
           </div>
         </Link>
       ))}
@@ -187,7 +187,7 @@ function MyClaims({ userId }) {
 
   if (isLoading) {
     return (
-      <div className="py-12 flex items-center justify-center gap-3 text-slate-400">
+      <div className="py-12 flex items-center justify-center gap-3 text-slate-400 dark:text-slate-500">
         <Loader2 className="w-5 h-5 animate-spin text-purple-500" />
         <span className="text-sm">Loading your claims...</span>
       </div>
@@ -196,7 +196,7 @@ function MyClaims({ userId }) {
 
   if (error) {
     return (
-      <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-sm text-rose-800 flex items-center justify-between gap-3">
+      <div className="p-4 rounded-xl bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/50 text-sm text-rose-800 dark:text-rose-300 flex items-center justify-between gap-3">
         <span className="flex items-center gap-2"><AlertCircle className="w-4 h-4" />{error}</span>
         <button onClick={fetchClaims} className="text-xs font-bold underline">Retry</button>
       </div>
@@ -205,15 +205,15 @@ function MyClaims({ userId }) {
 
   if (claims.length === 0) {
     return (
-      <div className="py-10 text-center space-y-3 rounded-2xl bg-slate-50 border border-dashed border-slate-200">
-        <ShieldCheck className="w-8 h-8 text-slate-300 mx-auto" />
-        <p className="text-sm font-semibold text-slate-600">No claims submitted yet</p>
-        <p className="text-xs text-slate-400">
+      <div className="py-10 text-center space-y-3 rounded-2xl bg-slate-50 dark:bg-[#11121d] border border-dashed border-slate-200 dark:border-slate-800">
+        <ShieldCheck className="w-8 h-8 text-slate-300 dark:text-slate-600 mx-auto" />
+        <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">No claims submitted yet</p>
+        <p className="text-xs text-slate-400 dark:text-slate-500">
           When you claim ownership of a found item, it will appear here.
         </p>
         <Link
           to="/browse"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white bg-purple-600 hover:bg-purple-700 transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-sm transition-colors"
         >
           Browse Found Items
         </Link>
@@ -228,14 +228,14 @@ function MyClaims({ userId }) {
         return (
           <div
             key={claim.id}
-            className="p-4 rounded-2xl border border-slate-200 bg-white space-y-3"
+            className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#181a28] space-y-3"
           >
             <div className="flex items-start justify-between gap-3">
               <div className="flex-1 min-w-0">
                 {linkedItem ? (
                   <Link
                     to={`/items/${linkedItem.id}`}
-                    className="text-sm font-bold text-slate-900 hover:text-indigo-600 transition-colors truncate block"
+                    className="text-sm font-bold text-slate-900 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition-colors truncate block"
                   >
                     {linkedItem.title}
                   </Link>
@@ -243,7 +243,7 @@ function MyClaims({ userId }) {
                   <p className="text-sm font-bold text-slate-400 italic">Item no longer available</p>
                 )}
                 {linkedItem && (
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-slate-500 mt-1">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-slate-500 dark:text-slate-400 mt-1">
                     <span className="flex items-center gap-1"><Tag className="w-3 h-3" />{linkedItem.category}</span>
                     <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{linkedItem.location}</span>
                   </div>
@@ -253,12 +253,12 @@ function MyClaims({ userId }) {
             </div>
 
             {claim.admin_notes && (
-              <div className="p-3 rounded-xl bg-amber-50 border border-amber-100 text-xs text-amber-800">
+              <div className="p-3 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-100 dark:border-amber-900/50 text-xs text-amber-800 dark:text-amber-300">
                 <span className="font-bold">Admin Note: </span>{claim.admin_notes}
               </div>
             )}
 
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-slate-400 dark:text-slate-500">
               Submitted: {new Date(claim.created_at).toLocaleDateString(undefined, {
                 month: 'short', day: 'numeric', year: 'numeric',
               })}
@@ -278,8 +278,8 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="max-w-5xl mx-auto px-4 py-20 flex items-center justify-center gap-3 text-slate-400">
-        <Loader2 className="w-6 h-6 animate-spin text-indigo-500" />
+      <div className="max-w-5xl mx-auto px-4 py-20 flex items-center justify-center gap-3 text-slate-400 dark:text-slate-500">
+        <Loader2 className="w-6 h-6 animate-spin text-purple-500" />
         <span className="text-sm font-medium">Loading your dashboard...</span>
       </div>
     );
@@ -289,8 +289,8 @@ export default function Dashboard() {
     return (
       <div className="max-w-xl mx-auto px-4 py-20 text-center space-y-4">
         <AlertCircle className="w-10 h-10 text-rose-400 mx-auto" />
-        <p className="text-slate-600 font-semibold">You must be signed in to view your dashboard.</p>
-        <Link to="/login" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors">
+        <p className="text-slate-600 dark:text-slate-300 font-semibold">You must be signed in to view your dashboard.</p>
+        <Link to="/login" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 transition-colors">
           Sign In
         </Link>
       </div>
@@ -298,19 +298,19 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8 transition-colors duration-200">
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">My Dashboard</h1>
-          <p className="text-slate-500 mt-1 text-sm">
-            Welcome back, <span className="font-semibold text-slate-700">{profile?.full_name || user.email}</span>
+          <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">My Dashboard</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-1 text-sm">
+            Welcome back, <span className="font-semibold text-slate-700 dark:text-slate-200">{profile?.full_name || user.email}</span>
           </p>
         </div>
         <Link
           to="/report"
           id="btn-new-report"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 transition-colors shadow-sm shadow-purple-600/25"
         >
           <Plus className="w-4 h-4" />
           New Report
@@ -318,14 +318,14 @@ export default function Dashboard() {
       </div>
 
       {/* Tab Navigation */}
-      <div className="flex gap-1 p-1 rounded-2xl bg-slate-100 w-fit">
+      <div className="flex gap-1 p-1 rounded-2xl bg-slate-100 dark:bg-[#1a1c2b] w-fit border border-slate-200/80 dark:border-slate-800">
         <button
           id="tab-my-reports"
           onClick={() => setActiveTab('reports')}
           className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
             activeTab === 'reports'
-              ? 'bg-white text-indigo-700 shadow-sm'
-              : 'text-slate-500 hover:text-slate-700'
+              ? 'bg-white dark:bg-[#25283b] text-purple-700 dark:text-purple-300 shadow-sm border border-slate-200 dark:border-slate-700'
+              : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
           }`}
         >
           <FileText className="w-4 h-4" />
@@ -336,8 +336,8 @@ export default function Dashboard() {
           onClick={() => setActiveTab('claims')}
           className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
             activeTab === 'claims'
-              ? 'bg-white text-purple-700 shadow-sm'
-              : 'text-slate-500 hover:text-slate-700'
+              ? 'bg-white dark:bg-[#25283b] text-purple-700 dark:text-purple-300 shadow-sm border border-slate-200 dark:border-slate-700'
+              : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
           }`}
         >
           <ShieldCheck className="w-4 h-4" />
@@ -346,15 +346,15 @@ export default function Dashboard() {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6">
+      <div className="bg-white dark:bg-[#151724] rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 transition-colors duration-200">
         {activeTab === 'reports' ? (
           <>
             <div className="flex items-center justify-between mb-5">
-              <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-                <FileText className="w-5 h-5 text-indigo-500" />
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <FileText className="w-5 h-5 text-purple-500" />
                 My Submitted Reports
               </h2>
-              <Link to="/report" className="text-xs font-semibold text-indigo-600 hover:text-indigo-700 flex items-center gap-1">
+              <Link to="/report" className="text-xs font-semibold text-purple-600 dark:text-purple-400 hover:underline flex items-center gap-1">
                 <Plus className="w-3.5 h-3.5" /> New
               </Link>
             </div>
@@ -363,11 +363,11 @@ export default function Dashboard() {
         ) : (
           <>
             <div className="mb-5">
-              <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 <ShieldCheck className="w-5 h-5 text-purple-500" />
                 My Ownership Claims
               </h2>
-              <p className="text-xs text-slate-400 mt-1">
+              <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">
                 Track the review status of your submitted ownership claims here.
               </p>
             </div>

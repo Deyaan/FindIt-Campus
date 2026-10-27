@@ -115,8 +115,8 @@ export default function ItemDetail() {
   if (isLoading) {
     return (
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex flex-col items-center justify-center space-y-4">
-        <Loader2 className="w-8 h-8 text-indigo-600 animate-spin" />
-        <p className="text-sm font-medium text-slate-500">Loading item record from campus registry...</p>
+        <Loader2 className="w-8 h-8 text-purple-600 dark:text-purple-400 animate-spin" />
+        <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Loading item record from campus registry...</p>
       </div>
     );
   }
@@ -124,18 +124,18 @@ export default function ItemDetail() {
   if (notFound) {
     return (
       <div className="max-w-xl mx-auto px-4 py-20 text-center space-y-6">
-        <div className="w-16 h-16 bg-slate-100 text-slate-400 rounded-2xl flex items-center justify-center mx-auto">
+        <div className="w-16 h-16 bg-slate-100 dark:bg-[#1a1c2b] text-slate-400 rounded-2xl flex items-center justify-center mx-auto">
           <AlertCircle className="w-8 h-8" />
         </div>
         <div className="space-y-2">
-          <h1 className="text-2xl font-bold text-slate-900">Item Not Found</h1>
-          <p className="text-sm text-slate-600 leading-relaxed">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Item Not Found</h1>
+          <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
             This item report does not exist, has been removed, or is no longer available in the public directory.
           </p>
         </div>
         <Link
           to="/browse"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition-all"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-sm transition-all"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Browse Feed
@@ -147,16 +147,16 @@ export default function ItemDetail() {
   if (errorMsg) {
     return (
       <div className="max-w-xl mx-auto px-4 py-16 text-center space-y-6">
-        <div className="w-16 h-16 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center mx-auto border border-rose-200">
+        <div className="w-16 h-16 bg-rose-50 dark:bg-rose-950/30 text-rose-600 dark:text-rose-400 rounded-2xl flex items-center justify-center mx-auto border border-rose-200 dark:border-rose-900/50">
           <AlertCircle className="w-8 h-8" />
         </div>
         <div className="space-y-2">
-          <h1 className="text-2xl font-bold text-slate-900">Unable to Display Item</h1>
-          <p className="text-sm text-rose-700">{errorMsg}</p>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Unable to Display Item</h1>
+          <p className="text-sm text-rose-700 dark:text-rose-400">{errorMsg}</p>
         </div>
         <button
           onClick={() => window.location.reload()}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 transition-all"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-[#1a1c2b] border border-slate-300 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-[#202234] transition-all"
         >
           Retry Loading
         </button>
@@ -190,7 +190,7 @@ export default function ItemDetail() {
       <div>
         <Link
           to="/browse"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Browse Feed
@@ -198,43 +198,43 @@ export default function ItemDetail() {
       </div>
 
       {/* Main Item Container */}
-      <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+      <div className="bg-white dark:bg-[#151724] rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden transition-colors duration-200">
         {/* Header Badges & Title */}
-        <div className="p-6 sm:p-8 border-b border-slate-100 space-y-4">
+        <div className="p-6 sm:p-8 border-b border-slate-100 dark:border-slate-800 space-y-4">
           <div className="flex flex-wrap items-center gap-2">
             <span
               className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
                 isLost
-                  ? 'bg-rose-100 text-rose-800 border border-rose-200'
-                  : 'bg-indigo-100 text-indigo-800 border border-indigo-200'
+                  ? 'bg-rose-100 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-900/50'
+                  : 'bg-purple-100 dark:bg-purple-950/50 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60'
               }`}
             >
               <span
                 className={`w-2 h-2 rounded-full ${
-                  isLost ? 'bg-rose-500' : 'bg-indigo-600'
+                  isLost ? 'bg-rose-500' : 'bg-purple-600'
                 }`}
               ></span>
               {isLost ? 'Lost Item Report' : 'Found Item Report'}
             </span>
 
-            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">
-              <Tag className="w-3.5 h-3.5 text-slate-500" />
+            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-[#1a1c2c] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800">
+              <Tag className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
               {item.category}
             </span>
 
-            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 capitalize">
+            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-900/50 capitalize">
               Status: {item.status}
             </span>
           </div>
 
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-snug">
             {item.title}
           </h1>
         </div>
 
         {/* Photo Section (if photo exists) */}
         {signedPhotoUrl && (
-          <div className="relative w-full max-h-[460px] bg-slate-900 flex items-center justify-center overflow-hidden">
+          <div className="relative w-full max-h-[460px] bg-slate-900 dark:bg-[#0c0d14] flex items-center justify-center overflow-hidden">
             <img
               src={signedPhotoUrl}
               alt={item.title}
@@ -246,43 +246,43 @@ export default function ItemDetail() {
         {/* Item Details Body */}
         <div className="p-6 sm:p-8 space-y-8">
           {/* Metadata Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-200/80">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-[#11121d] border border-slate-200/80 dark:border-slate-800">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-1">
                 Campus Location
               </span>
-              <div className="flex items-start gap-1.5 text-sm font-semibold text-slate-800">
-                <MapPin className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-1.5 text-sm font-semibold text-slate-800 dark:text-slate-200">
+                <MapPin className="w-4 h-4 text-purple-600 dark:text-purple-400 shrink-0 mt-0.5" />
                 <span>{item.location}</span>
               </div>
             </div>
 
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-1">
                 Incident Date
               </span>
-              <div className="flex items-start gap-1.5 text-sm font-semibold text-slate-800">
-                <Calendar className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-1.5 text-sm font-semibold text-slate-800 dark:text-slate-200">
+                <Calendar className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0 mt-0.5" />
                 <span>{formattedIncidentDate}</span>
               </div>
             </div>
 
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-1">
                 Reported By
               </span>
-              <div className="flex items-start gap-1.5 text-sm font-semibold text-slate-800">
-                <User className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-1.5 text-sm font-semibold text-slate-800 dark:text-slate-200">
+                <User className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0 mt-0.5" />
                 <span>{item.profiles?.full_name || 'Campus Member'}</span>
               </div>
             </div>
 
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-1">
                 Reported On
               </span>
-              <div className="flex items-start gap-1.5 text-sm font-semibold text-slate-800">
-                <Clock className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-1.5 text-sm font-semibold text-slate-800 dark:text-slate-200">
+                <Clock className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0 mt-0.5" />
                 <span>{formattedCreatedDate}</span>
               </div>
             </div>
@@ -290,34 +290,34 @@ export default function ItemDetail() {
 
           {/* Description Section */}
           <div className="space-y-3">
-            <h2 className="text-base font-bold uppercase tracking-wider text-slate-900">
+            <h2 className="text-base font-bold uppercase tracking-wider text-slate-900 dark:text-white">
               Detailed Description
             </h2>
-            <div className="p-6 rounded-2xl bg-white border border-slate-200 text-slate-700 text-sm leading-relaxed whitespace-pre-line shadow-xs">
+            <div className="p-6 rounded-2xl bg-white dark:bg-[#181a28] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-sm leading-relaxed whitespace-pre-line shadow-xs">
               {item.description}
             </div>
           </div>
 
           {/* Claims Section */}
-          <div className="pt-2 border-t border-slate-100">
+          <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
             {item.type === 'found' ? (
               hasClaimed ? (
-                <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                <div className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900/50 flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-sm font-bold text-emerald-900">Claim Submitted</h4>
-                    <p className="text-xs text-emerald-700 mt-0.5">
+                    <h4 className="text-sm font-bold text-emerald-900 dark:text-emerald-200">Claim Submitted</h4>
+                    <p className="text-xs text-emerald-700 dark:text-emerald-300 mt-0.5">
                       Your ownership claim is pending admin review. Track its status in your Dashboard.
                     </p>
                   </div>
                 </div>
               ) : user ? (
-                <div className="p-4 rounded-xl bg-purple-50/70 border border-purple-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="p-4 rounded-xl bg-purple-50/70 dark:bg-purple-950/30 border border-purple-100 dark:border-purple-900/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div className="flex items-start gap-3">
-                    <ShieldCheck className="w-5 h-5 text-purple-600 shrink-0 mt-0.5" />
+                    <ShieldCheck className="w-5 h-5 text-purple-600 dark:text-purple-400 shrink-0 mt-0.5" />
                     <div>
-                      <h4 className="text-sm font-bold text-purple-900">Is This Your Item?</h4>
-                      <p className="text-xs text-purple-700 mt-0.5">
+                      <h4 className="text-sm font-bold text-purple-900 dark:text-purple-200">Is This Your Item?</h4>
+                      <p className="text-xs text-purple-700 dark:text-purple-300 mt-0.5">
                         Submit a private ownership claim with proof. Admins will verify and contact you.
                       </p>
                     </div>
@@ -325,29 +325,29 @@ export default function ItemDetail() {
                   <button
                     id="btn-submit-claim"
                     onClick={() => setShowClaimModal(true)}
-                    className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-purple-600 hover:bg-purple-700 transition-colors shadow-sm"
+                    className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-sm shadow-purple-600/30 transition-all"
                   >
                     <ShieldCheck className="w-4 h-4" />
                     Submit Claim
                   </button>
                 </div>
               ) : (
-                <div className="p-4 rounded-xl bg-purple-50/70 border border-purple-100 flex items-start gap-3">
-                  <ShieldCheck className="w-5 h-5 text-purple-600 shrink-0 mt-0.5" />
+                <div className="p-4 rounded-xl bg-purple-50/70 dark:bg-purple-950/30 border border-purple-100 dark:border-purple-900/50 flex items-start gap-3">
+                  <ShieldCheck className="w-5 h-5 text-purple-600 dark:text-purple-400 shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="text-sm font-bold text-purple-900">Is This Your Item?</h4>
-                    <p className="text-xs text-purple-700 mt-0.5">
-                      <Link to="/login" className="underline font-semibold">Sign in</Link> to submit a private ownership claim.
+                    <h4 className="text-sm font-bold text-purple-900 dark:text-purple-200">Is This Your Item?</h4>
+                    <p className="text-xs text-purple-700 dark:text-purple-300 mt-0.5">
+                      <Link to="/login" className="underline font-semibold text-purple-600 dark:text-purple-400">Sign in</Link> to submit a private ownership claim.
                     </p>
                   </div>
                 </div>
               )
             ) : (
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
-                <ShieldCheck className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
+              <div className="p-4 rounded-xl bg-slate-50 dark:bg-[#11121d] border border-slate-200 dark:border-slate-800 flex items-start gap-3">
+                <ShieldCheck className="w-5 h-5 text-slate-400 dark:text-slate-500 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-sm font-bold text-slate-700">Lost Item Report</h4>
-                  <p className="text-xs text-slate-500 mt-0.5">
+                  <h4 className="text-sm font-bold text-slate-700 dark:text-slate-300">Lost Item Report</h4>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                     If you find this item, you can report it as found via the Report page.
                   </p>
                 </div>

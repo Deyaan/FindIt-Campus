@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Search, AlertCircle, RefreshCw, PlusCircle, Inbox, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
@@ -146,17 +146,17 @@ export default function Browse() {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+          <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Campus Lost &amp; Found Feed
           </h1>
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
             Browse and search active lost and found items across all campus buildings.
           </p>
         </div>
 
         <Link
           to="/report"
-          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition-all"
+          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-sm shadow-purple-600/20 transition-all hover:scale-[1.01]"
         >
           <PlusCircle className="w-4 h-4" />
           Report an Item
@@ -181,17 +181,17 @@ export default function Browse() {
       {/* Feed Content States */}
       {errorMsg ? (
         /* Error State */
-        <div className="bg-rose-50 border border-rose-200 rounded-2xl p-8 text-center space-y-4">
-          <div className="w-12 h-12 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center mx-auto">
+        <div className="bg-rose-50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-900/50 rounded-2xl p-8 text-center space-y-4">
+          <div className="w-12 h-12 rounded-xl bg-rose-100 dark:bg-rose-900/40 text-rose-600 dark:text-rose-400 flex items-center justify-center mx-auto">
             <AlertCircle className="w-6 h-6" />
           </div>
           <div>
-            <h3 className="text-lg font-bold text-rose-950">Unable to Load Items</h3>
-            <p className="text-sm text-rose-700 mt-1 max-w-md mx-auto">{errorMsg}</p>
+            <h3 className="text-lg font-bold text-rose-950 dark:text-rose-200">Unable to Load Items</h3>
+            <p className="text-sm text-rose-700 dark:text-rose-400 mt-1 max-w-md mx-auto">{errorMsg}</p>
           </div>
           <button
             onClick={() => fetchItems(0, false)}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-white text-rose-700 font-semibold text-sm rounded-xl border border-rose-300 hover:bg-rose-100/50 shadow-xs transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#1a1c2b] text-rose-700 dark:text-rose-300 font-semibold text-sm rounded-xl border border-rose-300 dark:border-rose-800 hover:bg-rose-50 dark:hover:bg-rose-900/30 shadow-xs transition-colors"
           >
             <RefreshCw className="w-4 h-4" />
             Retry Query
@@ -203,43 +203,43 @@ export default function Browse() {
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="bg-white rounded-2xl border border-slate-200 p-5 space-y-4 animate-pulse"
+              className="bg-white dark:bg-[#151724] rounded-2xl border border-slate-200 dark:border-slate-800 p-5 space-y-4 animate-pulse"
             >
-              <div className="h-44 bg-slate-100 rounded-xl"></div>
+              <div className="h-44 bg-slate-100 dark:bg-[#1e2030] rounded-xl"></div>
               <div className="space-y-2">
-                <div className="h-5 bg-slate-100 rounded w-3/4"></div>
-                <div className="h-4 bg-slate-100 rounded w-full"></div>
-                <div className="h-4 bg-slate-100 rounded w-2/3"></div>
+                <div className="h-5 bg-slate-100 dark:bg-[#1e2030] rounded w-3/4"></div>
+                <div className="h-4 bg-slate-100 dark:bg-[#1e2030] rounded w-full"></div>
+                <div className="h-4 bg-slate-100 dark:bg-[#1e2030] rounded w-2/3"></div>
               </div>
-              <div className="pt-3 border-t border-slate-100 flex justify-between">
-                <div className="h-3 bg-slate-100 rounded w-1/3"></div>
-                <div className="h-3 bg-slate-100 rounded w-1/4"></div>
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex justify-between">
+                <div className="h-3 bg-slate-100 dark:bg-[#1e2030] rounded w-1/3"></div>
+                <div className="h-3 bg-slate-100 dark:bg-[#1e2030] rounded w-1/4"></div>
               </div>
             </div>
           ))}
         </div>
       ) : items.length === 0 ? (
         /* Empty State */
-        <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center space-y-4 shadow-xs">
-          <div className="w-16 h-16 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto">
+        <div className="bg-white dark:bg-[#151724] rounded-2xl border border-slate-200 dark:border-slate-800 p-12 text-center space-y-4 shadow-xs">
+          <div className="w-16 h-16 rounded-2xl bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 border border-purple-100 dark:border-purple-900/50 flex items-center justify-center mx-auto">
             <Inbox className="w-8 h-8 stroke-[1.8]" />
           </div>
           <div className="space-y-1">
-            <h3 className="text-xl font-bold text-slate-800">No Items Found</h3>
-            <p className="text-sm text-slate-500 max-w-md mx-auto">
+            <h3 className="text-xl font-bold text-slate-800 dark:text-white">No Items Found</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
               We couldn't find any active reports matching your current filter criteria.
             </p>
           </div>
           <div className="pt-2 flex justify-center gap-3">
             <button
               onClick={handleClearFilters}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-[#1f2233] hover:bg-slate-200 dark:hover:bg-[#282b40] transition-colors"
             >
               Reset Filters
             </button>
             <Link
               to="/report"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 shadow-sm transition-colors"
             >
               <PlusCircle className="w-4 h-4" />
               Submit a Report
@@ -266,11 +266,11 @@ export default function Browse() {
                 type="button"
                 onClick={handleLoadMore}
                 disabled={isLoadingMore}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 shadow-xs hover:shadow transition-all disabled:opacity-50"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-slate-700 dark:text-slate-200 bg-white dark:bg-[#151724] hover:bg-slate-50 dark:hover:bg-[#1f2233] border border-slate-300 dark:border-slate-800 shadow-xs hover:shadow transition-all disabled:opacity-50"
               >
                 {isLoadingMore ? (
                   <>
-                    <Loader2 className="w-4 h-4 animate-spin text-indigo-600" />
+                    <Loader2 className="w-4 h-4 animate-spin text-purple-600 dark:text-purple-400" />
                     Loading More Items...
                   </>
                 ) : (

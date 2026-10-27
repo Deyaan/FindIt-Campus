@@ -140,7 +140,29 @@ Max Score: **100 points**
 
 ---
 
-### 8. Remaining Steps
-- **Phase 9:** Navbar active link highlights, optional toast notifications.
-- **Phase 10:** Push to GitHub → Deploy to Vercel → Add env vars → Smoke-test live URL.
+### 8. Milestone Verification (Phase 9 — Dark Mode & Theme Toggle)
+- **Design Inspiration:** `https://codementor-olive.vercel.app/` — deep obsidian canvas (`#0d0e15`), dark grey elevated cards (`#151724`), sleek violet/purple accents (`#7c6eed` / `#8b5cf6`), subtle borders (`#1f2130` / `border-slate-800`), and modern typography.
+- **Default State:** Defaults to **Dark Mode** on initial load with zero white flash (`<html class="dark">` with inline `<head>` script syncing `localStorage`).
+- **User Toggle:** `ThemeToggle.jsx` with Sun/Moon icons and micro-animations, integrated into desktop header and mobile menu.
+- **State Management:** `ThemeContext.jsx` with `ThemeProvider` and `useTheme()` hook, persisting choice in `localStorage` (`findit_theme`).
+- **Tailwind v4 Setup:** `@custom-variant dark (&:where(.dark, .dark *));` configured in `src/index.css`.
+- **Pages & Components Restyled:**
+  - `Navbar.jsx` (glassmorphism header, purple glow badge, theme toggle)
+  - `Footer.jsx` (dark styling, brand mark)
+  - `Home.jsx` (dark hero canvas, purple radial glow, feature cards)
+  - `Browse.jsx` (dark feed, search filters, skeleton states, reset action)
+  - `ItemCard.jsx` & `ItemFilter.jsx` (dark cards, category pills, select dropdowns)
+  - `ItemDetail.jsx` (dark metadata cards, back link, photo viewer)
+  - `PotentialMatches.jsx` (dark score bars, candidate cards)
+  - `ClaimModal.jsx` (dark modal backdrop, inputs, purple gradient button)
+  - `Dashboard.jsx` (dark tabs, reports, claims status badges)
+  - `Admin.jsx` (dark metric cards, claim review table, moderation items)
+  - `Login.jsx` & `Register.jsx` (dark auth cards, inputs, purple gradient submit buttons)
+  - `RouteGuards.jsx` (dark 403 Forbidden screen & loading spinner)
+- **Production Build:** Verified with `npm run build` (exit code 0, 2004 modules, 619ms).
+
+---
+
+### 9. Remaining Steps
+- **Vercel Deployment:** Push to Git repository → Deploy to Vercel → Configure Supabase environment variables → Smoke test production URL.
 
