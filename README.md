@@ -14,6 +14,8 @@ A centralized platform to report, discover, and recover lost belongings on campu
 </div>
 
 ---
+## Explainer Video -
+https://drive.google.com/file/d/1zV28xixW6qfOmpjv0L18QuV1KFONRGmj/view?usp=sharing
 
 ## Overview
 
